@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,8 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class HelloControler {
+public class HelloController {
     String message = "Welcome to Spring MVC!";
+    static Logger log = Logger.getLogger(HelloController.class);
     
     @RequestMapping("/hello")
     public ModelAndView showMessage(
@@ -27,6 +29,7 @@ public class HelloControler {
         ModelAndView mv = new ModelAndView("helloworld");
         mv.addObject("message", message);
         mv.addObject("name", name);
+        log.info("request url: hello");
         return mv;
     }
     
